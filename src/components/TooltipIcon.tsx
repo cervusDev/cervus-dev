@@ -1,6 +1,8 @@
+import type { JSX } from "react";
+
 interface ITooltip {
   message: string;
-  content: any;
+  content: JSX.Element;
 }
 
 function TooltipIconWrapper({ content, message }: ITooltip) {

@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+#root {
+  max-width: 100%;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  background-color: #0f0f0f;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+  color: #e5e5e5;
+  font-family: "Inter", sans-serif; */
+
+  /* background: radial-gradient(circle at 20% 20%, #202020, #0d0d0d 70%) fixed,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    );
+
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  background-blend-mode: overlay;
+
+  animation: fogMove 20s ease-in-out infinite alternate;
+
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  margin: 0; */
+
+  background-color: #0f0f0f;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+  color: #e5e5e5;
+  font-family: "Inter", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fogMove {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%, 100% 100%, 50px 50px;
+  }
+}
+
+p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  height: 12.5rem;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 20px 125px rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-slide {
+  animation: slide 35s linear infinite;
+}

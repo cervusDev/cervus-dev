@@ -42,4 +42,4 @@ jobs:
         run: pnpm run ci:lint
 
       - name: Typechecking
-        run: pnpm run typechecking
+        run: pnpm run ci:typecheck

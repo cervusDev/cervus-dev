@@ -9,7 +9,7 @@
     "ci:lint": "eslint .",
     "ci:test": "echo 'ok'",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "ci:typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",

@@ -14,20 +14,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 1️⃣ Instala o pnpm ANTES do cache
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
+          run_install: false
 
+      # 2️⃣ Setup do Node + cache pnpm
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           cache: 'pnpm'
 
-      - name: Verify pnpm
-        run: pnpm --version
+      # 3️⃣ (Opcional, mas recomendado) valida versão
+      - name: Verify versions
+        run: |
+          node --version
+          pnpm --version
 
+      # 4️⃣ Instala dependências de forma reprodutível
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

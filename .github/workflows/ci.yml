@@ -9,25 +9,25 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name:  Use Node.js 18.x
-      uses: actions/setup-node@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
 
-      with:
-        node-version: '18.x'
-        cache: 'pnpm'
-    
-    - name: Enable Corepack
-      run: corepack enable
+      - name: Enable Corepack
+        run: corepack enable
 
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-    - name: Linting
-      run: pnpm run ci:lint
+      - name: Linting
+        run: pnpm run ci:lint
 
-    - name: Typechecking
-      run: pnpm run typechecking    
+      - name: Typechecking
+        run: pnpm run typechecking

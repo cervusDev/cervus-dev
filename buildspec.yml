@@ -1,11 +1,13 @@
 version: 0.2
 
+env:
+  variables:
+    NODE_VERSION: "18"
+
 phases:
   install:
     runtime-versions:
       nodejs: 18
-  
-  pre_build:
     commands:
       # 1️⃣ Instala pnpm
       - echo "Installing pnpm..."
@@ -14,6 +16,24 @@ phases:
       # 2️⃣ Verifica versões (equivalente ao Verify versions)
       - node --version
       - pnpm --version
-  
+
+  pre_build:
+    commands:
+      # 3️⃣ Instala dependências (mesma flag do CI)
+      - echo "Installing dependencies..."
+      - pnpm install --no-frozen-lockfile
+
   build:
-    pnpm run build
+    commands:
+      # 4️⃣ Lint
+      - echo "Running lint..."
+      - pnpm run ci:lint
+
+      # 5️⃣ Typecheck
+      - echo "Running typecheck..."
+      - pnpm run ci:typecheck
+
+cache:
+  paths:
+    # Cache do pnpm (equivalente ao cache: 'pnpm')
+    - ~/.pnpm-store/**/*

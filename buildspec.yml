@@ -2,12 +2,13 @@ version: 0.2
 
 env:
   variables:
-    NODE_VERSION: "18"
+    NODE_VERSION: "22"
 
 phases:
   install:
     runtime-versions:
       nodejs: 22
+
     commands:
       - echo "Installing pnpm..."
       - npm install -g pnpm@8
@@ -25,6 +26,7 @@ phases:
 
       - echo "Running typecheck..."
       - pnpm run ci:typecheck
+  
   build:
     commands:
       - echo "build..."
@@ -37,5 +39,4 @@ phases:
 
 cache:
   paths:
-    # Cache do pnpm (equivalente ao cache: 'pnpm')
     - ~/.pnpm-store/**/*

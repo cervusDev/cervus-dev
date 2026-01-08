@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+  
+  pre_build:
+    commands:
+      # 1️⃣ Instala pnpm
+      - echo "Installing pnpm..."
+      - npm install -g pnpm@8
+
+      # 2️⃣ Verifica versões (equivalente ao Verify versions)
+      - node --version
+      - pnpm --version
+  
+  build:
+    pnpm run build

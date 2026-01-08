@@ -9,29 +9,31 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      # 1️⃣ Instala pnpm
       - echo "Installing pnpm..."
       - npm install -g pnpm@8
 
-      # 2️⃣ Verifica versões (equivalente ao Verify versions)
       - node --version
       - pnpm --version
 
   pre_build:
     commands:
-      # 3️⃣ Instala dependências (mesma flag do CI)
       - echo "Installing dependencies..."
       - pnpm install --no-frozen-lockfile
 
-  build:
-    commands:
-      # 4️⃣ Lint
       - echo "Running lint..."
       - pnpm run ci:lint
 
-      # 5️⃣ Typecheck
       - echo "Running typecheck..."
       - pnpm run ci:typecheck
+  build:
+    commands:
+      - echo "build..."
+      - pnpm run build
+  
+  post_build:
+    commands:
+      - aws s3 sync --delete ./dist s3://${{BUCKET_NAME}}
+      - aws cloudfront create-invalidation --distribution-id ${{CLOUD_FRONT}} --paths /index.html
 
 cache:
   paths:

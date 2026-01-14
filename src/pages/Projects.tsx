@@ -1,5 +1,4 @@
-import { NavLink } from "react-router";
-import projects from "../constants/project";
+import { Timeline } from "@/components/Timeline";
 
 function Projects() {
   return (
@@ -29,21 +28,144 @@ function Projects() {
             ou em um dos cartões abaixo.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <NavLink key={project.id} to={`/projetos/${project.id}`}>
-              <div className="glass-card">
-                <h3 className="text-xl font-semibold mb-2 text-white truncate">
-                  {project.title}
-                </h3>
-                <p className="text-white/80 overflow-hidden text-ellipsis line-clamp-4">
-                  {project.description}
-                </p>
-              </div>
-            </NavLink>
-          ))}
-        </div>
+        <Timeline
+          data={[
+            {
+              id: "aug-2018",
+              label: "2017",
+              entries: 1,
+              days: [
+                {
+                  id: "21",
+                  dateLabel: "Agosto - Setembro",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "2",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "22",
+                  dateLabel: "Agosto - Setembro",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "2",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: "aug-2018",
+              label: "2018",
+              entries: 1,
+              days: [
+                {
+                  id: "21",
+                  dateLabel: "Agosto - Setembro",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "2",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "22",
+                  dateLabel: "Agosto - Setembro",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "2",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Título do projeto",
+                      footer: "- Empresa",
+                      items: [
+                        { label: "Tecnologias", value: "React, Tanstack" },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ]}
+        />
       </div>
     </section>
   );

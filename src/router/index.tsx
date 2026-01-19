@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
         path: "projetos",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <Projects />
           </Suspense>
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         path: "textos",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <Posts />
           </Suspense>
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
         path: "onde-estou",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <WhereIAm />
           </Suspense>
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         path: "contato",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <Contact />
           </Suspense>

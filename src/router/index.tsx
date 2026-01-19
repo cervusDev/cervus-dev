@@ -9,7 +9,7 @@ const Contact = lazy(() => import("../pages/Contact"));
 const WhereIAm = lazy(() => import("../pages/WhereIAm"));
 const Projects = lazy(() => import("../pages/Projects"));
 const PostDetail = lazy(() => import("../pages/PostDetail"));
-const ProjectDetail = lazy(() => import("../pages/ProjectDetails"));
+// const ProjectDetail = lazy(() => import("../pages/ProjectDetails"));
 
 export const router = createBrowserRouter([
   {
@@ -21,18 +21,18 @@ export const router = createBrowserRouter([
         path: "projetos",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <Projects />
           </Suspense>
         ),
       },
-      { path: "projetos/:id", element: <ProjectDetail /> },
+      // { path: "projetos/:id", element: <ProjectDetail /> },
       {
         path: "textos",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <Posts />
           </Suspense>
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
         path: "onde-estou",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <WhereIAm />
           </Suspense>
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         path: "contato",
         element: (
           <Suspense
-            fallback={<div className="p-6 text-white">Carregando...</div>}
+            fallback={<div className="p-6 text-white"></div>}
           >
             <Contact />
           </Suspense>

@@ -1,9 +1,16 @@
-import { NavLink } from "react-router";
-import projects from "../constants/project";
+import { Timeline } from "@/components/Timeline";
+import projects from '@/constants/projects';
+import { motion } from "framer-motion";
 
 function Projects() {
   return (
     <section className="py-12">
+       <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="space-y-6"
+      > 
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-white">Projetos</h2>
 
@@ -18,7 +25,7 @@ function Projects() {
             <span className="text-orange-500">projetos em que participei</span>,
             destacando desafios e soluções implementadas.
             <br />
-            Para conhecer todos os detalhes, você pode baixar o PDF completo dos
+            {/* Para conhecer todos os detalhes, você pode baixar o PDF completo dos
             projetos clicando{" "}
             <span
               className="text-orange-500 cursor-pointer"
@@ -26,25 +33,14 @@ function Projects() {
             >
               aqui
             </span>{" "}
-            ou em um dos cartões abaixo.
+            ou em um dos cartões abaixo. */}
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <NavLink key={project.id} to={`/projetos/${project.id}`}>
-              <div className="glass-card">
-                <h3 className="text-xl font-semibold mb-2 text-white truncate">
-                  {project.title}
-                </h3>
-                <p className="text-white/80 overflow-hidden text-ellipsis line-clamp-4">
-                  {project.description}
-                </p>
-              </div>
-            </NavLink>
-          ))}
-        </div>
+        <Timeline
+          data={projects}
+        />
       </div>
+      </motion.div>
     </section>
   );
 }

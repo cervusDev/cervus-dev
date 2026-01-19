@@ -1,11 +1,11 @@
-import { Outlet, useLocation } from "react-router";
 import Header from "./header";
-import LogosSlider from "@/components/logoSlider";
+import { Outlet } from "react-router";
+// import LogosSlider from "@/components/logoSlider";
 
 export default function MainLayout() {
-  const location = useLocation();
+  // const location = useLocation();
 
-  const hasHome = location.pathname == "/";
+  // const hasHome = location.pathname == "/";
 
   return (
     <div className="min-h-screen text-white">
@@ -14,7 +14,7 @@ export default function MainLayout() {
         <div className="max-w-7xl mx-auto px-4">
           <Outlet />
         </div>
-        {hasHome && <LogosSlider />}
+        {/* {hasHome && <LogosSlider />} */}
       </main>
     </div>
   );

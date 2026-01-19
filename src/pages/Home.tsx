@@ -1,23 +1,56 @@
-import { NavLink } from "react-router";
-import { AvatarContent } from "@/components/Avatar";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <section className="py-20">
-      <div className="flex w-full items-center justify-center mb-16">
-        <AvatarContent />
-      </div>
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
-          Olá, eu sou Gustavo!
-        </h2>
-        <NavLink
-          to="/projetos"
-          className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg transition"
+    <main>
+      <section className="container mx-auto px-6 pt-24 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6"
         >
-          Projetos
-        </NavLink>
-      </div>
-    </section>
+          <span className="inline-block rounded-full bg-emerald-500/10 text-orange-400 px-4 py-1 text-sm">
+            Desenvolvedor Full Stack / Mobile
+          </span>
+
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            Olá, eu sou <span className="text-orange-400">Gustavo Henrique</span>
+          </h1>
+
+          <p className="text-zinc-400 text-lg max-w-xl">
+            Desenvolvedor especializado em desenvolvimento web. Crio aplicações escaláveis, performáticas e com foco
+            em experiência do usuário.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="/projetos"
+              className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 font-medium text-white hover:bg-orange-400 transition"
+            >
+              Ver projetos <ArrowRight size={18} />
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="rounded-3xl bg-zinc-900/70 border border-zinc-800 p-10 shadow-2xl">
+            <h3 className="text-xl font-semibold mb-6">Resumo rápido</h3>
+            <ul className="space-y-4 text-zinc-400">
+              <li>🚀 +5 anos de experiência com desenvolvimento web</li>
+              <li>⚛️ Next.js, Node.js, React Native e Expo</li>
+              <li>📱 Plataformas web, banco de dados e app mobile</li>
+              <li>🧠 Código limpo, arquitetura e performance</li>
+            </ul>
+          </div>
+        </motion.div>
+      </section>
+    </main>
   );
 }

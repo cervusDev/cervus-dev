@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import projects from "../constants/project";
+import projects from "../constants/projectDetails";
 import { CarouselSection } from "@/components/Carousel";
 import ScrollProgress from "@/components/ScrollProgress";
 

@@ -22,8 +22,8 @@ function Projects() {
             conhecimento sólido e prático.
             <br />
             Nesta sessão, apresento alguns dos{" "}
-            <span className="text-orange-500">projetos em que participei</span>,
-            destacando desafios e soluções implementadas.
+            <span className="text-orange-500">projetos em que participei</span>.
+            {/* destacando desafios e soluções implementadas. */}
             <br />
             {/* Para conhecer todos os detalhes, você pode baixar o PDF completo dos
             projetos clicando{" "}

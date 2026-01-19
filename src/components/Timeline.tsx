@@ -19,7 +19,6 @@ export interface TimelineDay {
 export interface TimelineMonth {
   id: string;
   label: string;
-  entries: number;
   days: TimelineDay[];
 }
 
@@ -73,19 +72,6 @@ function TimelineMonth({ month }: { month: TimelineMonth }) {
         "
       >
         {month.label}
-        <span
-          className="
-            absolute -top-px left-[calc(100%-10px)]
-            -z-10 whitespace-nowrap
-            py-1 pr-[10px] pl-5
-            bg-[#111]
-            border border-black
-            rounded-tr-[40px] rounded-br-[40px]
-            text-white
-          "
-        >
-          {month.entries} Entries
-        </span>
       </div>
 
       {month.days.map((day) => (

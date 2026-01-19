@@ -31,34 +31,141 @@ function Projects() {
         <Timeline
           data={[
             {
-              id: "aug-2018",
-              label: "2017",
-              entries: 1,
+              id: "jul-2026",
+              label: "2026",
               days: [
                 {
-                  id: "21",
-                  dateLabel: "Agosto - Setembro",
+                  id: "1",
+                  dateLabel: "Janeiro - Atualmente",
                   cards: [
                     {
                       id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "ERP - interno",
+                      footer: "- Rac",
                       items: [
-                        { label: "Tecnologias", value: "React, Tanstack" },
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
                         { label: "Território", value: "Brasil" },
                         { label: "Descrição", value: "lorem ipsum" },
                       ],
                     },
                     {
-                      id: "2",
+                      id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "Mentor",
+                      footer: "- Rac",
                       items: [
-                        { label: "Tecnologias", value: "React, Tanstack" },
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Smart Stock",
+                      footer: "- Rac",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Hub de cobranças",
+                      footer: "- Rac",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: "jul-2025",
+              label: "2025",
+              days: [
+                {
+                  id: "1",
+                  dateLabel: "Outubro - Dezembro",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "ERP - interno",
+                      footer: "- Rac",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Mentor",
+                      footer: "- Rac",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Smart Stock",
+                      footer: "- Rac",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Hub de cobranças",
+                      footer: "- Rac",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ",
+                        },
                         { label: "Território", value: "Brasil" },
                         { label: "Descrição", value: "lorem ipsum" },
                       ],
@@ -66,29 +173,56 @@ function Projects() {
                   ],
                 },
                 {
-                  id: "22",
-                  dateLabel: "Agosto - Setembro",
+                  id: "1",
+                  dateLabel: "Julho - Outubro",
                   cards: [
                     {
                       id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "Carroção",
+                      footer: "- Rac",
                       items: [
-                        { label: "Tecnologias", value: "React, Tanstack" },
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ, gRPC",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "1",
+                  dateLabel: "Janeiro - Julho",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Interplan.RIO",
+                      footer: "- Macroplan",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ, gRPC",
+                        },
                         { label: "Território", value: "Brasil" },
                         { label: "Descrição", value: "lorem ipsum" },
                       ],
                     },
                     {
-                      id: "2",
+                      id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "MS Ativo",
+                      footer: "- Macroplan",
                       items: [
-                        { label: "Tecnologias", value: "React, Tanstack" },
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ, gRPC",
+                        },
                         { label: "Território", value: "Brasil" },
                         { label: "Descrição", value: "lorem ipsum" },
                       ],
@@ -99,19 +233,18 @@ function Projects() {
             },
             {
               id: "aug-2018",
-              label: "2018",
-              entries: 1,
+              label: "2024",
               days: [
                 {
                   id: "21",
-                  dateLabel: "Agosto - Setembro",
+                  dateLabel: "Janeiro - Novembro",
                   cards: [
                     {
                       id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "Interplan.RIO",
+                      footer: "- Macroplan",
                       items: [
                         { label: "Tecnologias", value: "React, Tanstack" },
                         { label: "Território", value: "Brasil" },
@@ -119,29 +252,38 @@ function Projects() {
                       ],
                     },
                     {
-                      id: "2",
+                      id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "MS Ativo",
+                      footer: "- Macroplan",
                       items: [
-                        { label: "Tecnologias", value: "React, Tanstack" },
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ, gRPC",
+                        },
                         { label: "Território", value: "Brasil" },
                         { label: "Descrição", value: "lorem ipsum" },
                       ],
                     },
                   ],
                 },
+              ],
+            },
+            {
+              id: "aug-2018",
+              label: "2023",
+              days: [
                 {
-                  id: "22",
-                  dateLabel: "Agosto - Setembro",
+                  id: "21",
+                  dateLabel: "Janeiro - Dezembro",
                   cards: [
                     {
                       id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "ABCR +",
+                      footer: "- Macroplan",
                       items: [
                         { label: "Tecnologias", value: "React, Tanstack" },
                         { label: "Território", value: "Brasil" },
@@ -149,11 +291,53 @@ function Projects() {
                       ],
                     },
                     {
-                      id: "2",
+                      id: "1",
                       icon: "fa-asterisk",
                       iconColor: "text-green-500",
-                      title: "Título do projeto",
-                      footer: "- Empresa",
+                      title: "Amazonia Legal",
+                      footer: "- Macroplan",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ, gRPC",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "DGM",
+                      footer: "- Macroplan",
+                      items: [
+                        {
+                          label: "Tecnologias",
+                          value: "Next.js, Node.js, Fastify, RabbitMQ, gRPC",
+                        },
+                        { label: "Território", value: "Brasil" },
+                        { label: "Descrição", value: "lorem ipsum" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: "aug-2018",
+              label: "2022",
+              days: [
+                {
+                  id: "21",
+                  dateLabel: "Julho - Dezembro",
+                  cards: [
+                    {
+                      id: "1",
+                      icon: "fa-asterisk",
+                      iconColor: "text-green-500",
+                      title: "Cidade SUSP",
+                      footer: "- Macroplan",
                       items: [
                         { label: "Tecnologias", value: "React, Tanstack" },
                         { label: "Território", value: "Brasil" },

@@ -24,11 +24,11 @@ export interface TimelineMonth {
 
 const projects: TimelineMonth[] = [
   {
-    id: "jul-2026",
+    id: "0",
     label: "2026",
     days: [
       {
-        id: "1",
+        id: "0",
         dateLabel: "Janeiro - Atualmente",
         cards: [
           {

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export interface TimelineCard {
   id: string;
   icon: string;
@@ -42,20 +44,34 @@ export function Timeline({ data }: TimelineProps) {
           before:bg-[linear-gradient(to_right,rgba(138,145,150,1)_0%,rgba(122,130,136,1)_60%,rgba(98,105,109,1)_100%)]
         "
       >
-        {data.map((month) => (
-          <TimelineMonth key={month.id} month={month} />
+        {data.map((month, index) => (
+          <TimelineMonth
+            key={month.id}
+            month={month}
+            defaultOpen={index === 0}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function TimelineMonth({ month }: { month: TimelineMonth }) {
+function TimelineMonth({
+  month,
+  defaultOpen = false,
+}: {
+  month: TimelineMonth;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
     <>
-      <div
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
         className="
-          relative inline-block mb-[30px]
+          relative inline-flex items-center gap-2 mb-[30px]
           py-1 pr-4 pl-[35px]
           bg-[#444950]
           rounded-[40px]
@@ -72,43 +88,44 @@ function TimelineMonth({ month }: { month: TimelineMonth }) {
         "
       >
         {month.label}
-      </div>
+        <span
+          className={`transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+        >
+          ▼
+        </span>
+      </button>
 
-      {month.days.map((day) => (
-        <TimelineDay key={day.id} day={day} />
-      ))}
+      <div
+        className={`
+          transition-all duration-300
+          ${open ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}
+        `}
+      >
+        {month.days.map((day, index) => (
+          <TimelineDay
+            key={day.id}
+            day={day}
+            defaultOpen={defaultOpen && index === 0}
+          />
+        ))}
+      </div>
     </>
   );
 }
 
-import { useState } from "react";
-
-function TimelineDay({ day }: { day: TimelineDay }) {
-  const [open, setOpen] = useState(true);
+function TimelineDay({
+  day,
+  defaultOpen = false,
+}: {
+  day: TimelineDay;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div
-      className="
-        relative block mb-[30px] pl-[35px]
-        before:absolute
-        before:content-['']
-        before:w-[30px]
-        before:h-px
-        before:bg-[#444950]
-        before:top-3
-        before:left-5
-        after:absolute
-        after:content-['']
-        after:w-[10px]
-        after:h-[10px]
-        after:top-[7px]
-        after:left-[11px]
-        after:rounded-full
-        after:border after:border-[#17191B]
-        after:bg-[linear-gradient(to_bottom,rgba(138,145,150,1)_0%,rgba(122,130,136,1)_60%,rgba(112,120,125,1)_100%)]
-      "
-    >
-      {/* Date toggle */}
+    <div className="relative block mb-[30px] pl-[35px]">
       <button
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
@@ -132,7 +149,6 @@ function TimelineDay({ day }: { day: TimelineDay }) {
         </span>
       </button>
 
-      {/* Cards */}
       <div
         className={`
           grid transition-all duration-300

@@ -156,6 +156,8 @@ function TimelineCard({ card }: { card: TimelineCard }) {
         border border-[#17191B]
         rounded-[15px]
         rounded-tl-none rounded-br-none
+        flex flex-col
+        h-full
       "
     >
       <div className="px-[15px] py-[5px] border-b border-[#17191B] text-white">
@@ -163,7 +165,7 @@ function TimelineCard({ card }: { card: TimelineCard }) {
         {card.title}
       </div>
 
-      <div className="px-[15px] py-[5px] bg-[#17191B] text-sm">
+      <div className="px-[15px] py-[5px] bg-[#17191B] text-sm flex-1">
         {card.items.map((item, i) => (
           <div key={i} className="mb-[5px]">
             <strong className="italic text-[#666] mr-1">{item.label}</strong>:
@@ -172,7 +174,7 @@ function TimelineCard({ card }: { card: TimelineCard }) {
         ))}
       </div>
 
-      <div className="px-[15px] py-[5px] border-t border-[#17191B] text-right italic text-white">
+      <div className="px-[15px] py-[5px] h-[40px] flex items-center justify-end border-t border-[#17191B] text-right italic text-white">
         {card.footer}
       </div>
     </div>

@@ -9,7 +9,7 @@ const Contact = lazy(() => import("../pages/Contact"));
 const WhereIAm = lazy(() => import("../pages/WhereIAm"));
 const Projects = lazy(() => import("../pages/Projects"));
 const PostDetail = lazy(() => import("../pages/PostDetail"));
-const ProjectDetail = lazy(() => import("../pages/ProjectDetails"));
+// const ProjectDetail = lazy(() => import("../pages/ProjectDetails"));
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      { path: "projetos/:id", element: <ProjectDetail /> },
+      // { path: "projetos/:id", element: <ProjectDetail /> },
       {
         path: "textos",
         element: (

@@ -14,7 +14,7 @@ export default function MainLayout() {
         <div className="max-w-7xl mx-auto px-4">
           <Outlet />
         </div>
-        {hasHome && <LogosSlider />}
+        {/* {hasHome && <LogosSlider />} */}
       </main>
     </div>
   );

@@ -4,6 +4,10 @@ export interface TimelineCard {
   iconColor: string;
   title: string;
   footer: string;
+  navigation?: {
+    url?: string;
+    message?: string;
+  }
   items: {
     label: string;
     value: string;
@@ -38,6 +42,9 @@ const projects: TimelineMonth[] = [
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "ERP - interno",
+            navigation: {
+              url: '',
+            },
             footer: "- Rac",
             items: [
               {

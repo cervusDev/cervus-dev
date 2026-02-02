@@ -1,29 +1,10 @@
+import type {
+  TimelineMonth,
+  TimelineDay,
+  TimelineCard,
+} from "@/constants/projects";
 import { useState } from "react";
-
-export interface TimelineCard {
-  id: string;
-  icon: string;
-  iconColor: string;
-  title: string;
-  footer: string;
-  items: {
-    label: string;
-    value: string;
-  }[];
-}
-
-export interface TimelineDay {
-  id: string;
-  dateLabel: string;
-  cards: TimelineCard[];
-}
-
-export interface TimelineMonth {
-  id: string;
-  label: string;
-  promotion?: string;
-  days: TimelineDay[];
-}
+import { motion, AnimatePresence } from "framer-motion";
 
 interface TimelineProps {
   data: TimelineMonth[];
@@ -126,6 +107,16 @@ function TimelineDay({
   defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigation = (url?: string) => {
+    if (!url) {
+      setIsModalOpen(true);
+      return;
+    }
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div className="relative block mb-[30px] pl-[35px]">
@@ -137,9 +128,9 @@ function TimelineDay({
           px-[15px] py-[2px]
           rounded-[20px]
           border border-[#17191B]
-          text-white
+          text-gray
           shadow-[1px_1px_1px_rgba(0,0,0,0.3)]
-          bg-[linear-gradient(#74cae3,#5bc0de_60%,#4ab9db)]
+          bg-orange-500
         "
       >
         {day.dateLabel}
@@ -155,29 +146,104 @@ function TimelineDay({
       <div
         className={`
           grid transition-all duration-300
-          ${open ? "grid-cols-1 md:grid-cols-3 gap-4 max-h-[3000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"}
+          ${
+            open
+              ? "grid-cols-1 md:grid-cols-3 gap-4 max-h-[3000px] opacity-100"
+              : "max-h-0 opacity-0 overflow-hidden"
+          }
         `}
       >
         {day.cards.map((card) => (
-          <TimelineCard key={card.id} card={card} />
+          <TimelineCard
+            key={card.id}
+            card={card}
+            onNavigation={() => navigation(card.navigation?.url)}
+          />
         ))}
       </div>
+
+      {isModalOpen && (
+        <UnavailableProjectModal onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 }
 
-function TimelineCard({ card }: { card: TimelineCard }) {
+
+function UnavailableProjectModal({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+        role="dialog"
+        aria-modal="true"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="bg-[#17191B] text-white rounded-lg p-6 max-w-md w-full shadow-lg"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2 className="text-lg font-semibold mb-3">
+            Projeto indisponível
+          </h2>
+
+          <p className="text-sm text-gray-300 mb-6">
+            Este projeto ainda não está disponível para acesso público.
+          </p>
+
+          <div className="flex justify-end">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded bg-orange-500 hover:bg-orange-600 transition"
+            >
+              Entendi
+            </button>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+
+function TimelineCard({
+  card,
+  onNavigation,
+}: {
+  card: TimelineCard;
+  onNavigation: () => void;
+}) {
   return (
     <div
+      onClick={onNavigation}
       className="
-        relative overflow-hidden
-        bg-[#444950]
-        border border-[#17191B]
-        rounded-[15px]
-        rounded-tl-none rounded-br-none
-        flex flex-col
-        h-full
-      "
+    group
+    relative overflow-hidden
+    bg-[#444950]
+    border border-[#17191B]
+    rounded-[15px]
+    rounded-tl-none rounded-br-none
+    flex flex-col
+    h-full
+    cursor-pointer
+
+    transition-all duration-200 ease-out
+    hover:scale-[1.02]
+    hover:border-[#2F80ED]
+    hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)]
+  "
     >
       <div className="px-[15px] py-[5px] border-b border-[#17191B] text-white">
         <i className={`fa ${card.icon} ${card.iconColor} mr-1`} />
@@ -193,7 +259,18 @@ function TimelineCard({ card }: { card: TimelineCard }) {
         ))}
       </div>
 
-      <div className="px-[15px] py-[5px] h-[40px] flex items-center justify-end border-t border-[#17191B] text-right italic text-white">
+      <div
+        className="
+  px-[15px] py-[5px]
+  h-[40px]
+  flex items-center justify-end
+  border-t border-[#17191B]
+  text-right italic text-white
+
+  transition-colors duration-200
+  group-hover:text-orange-400
+"
+      >
         {card.footer}
       </div>
     </div>

@@ -1,6 +1,6 @@
 // src/components/ContactSection.tsx
 import { motion } from "framer-motion";
-import { AirVent, Mail, Activity } from "lucide-react";
+import { Mail, Linkedin, Github } from "lucide-react";
 
 function Contact() {
   return (
@@ -24,12 +24,12 @@ function Contact() {
           <div className="flex justify-center gap-10">
             <div className="relative group">
               <a
-                href="https://www.linkedin.com/in/seu-perfil"
+                href="https://www.linkedin.com/in/gustavo-carvera/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-500 hover:text-orange-400 transition-colors"
               >
-                <AirVent size={40} />
+                <Linkedin size={40} />
               </a>
               <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
                 Acesse meu LinkedIn
@@ -38,7 +38,7 @@ function Contact() {
 
             <div className="relative group">
               <a
-                href="mailto:seuemail@exemplo.com"
+                href="mailto:gustavo.cervus@gmail.com"
                 className="text-orange-500 hover:text-orange-400 transition-colors"
               >
                 <Mail size={40} />
@@ -50,12 +50,12 @@ function Contact() {
 
             <div className="relative group">
               <a
-                href="https://github.com/seuusuario"
+                href="https://github.com/cervusDev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-500 hover:text-orange-400 transition-colors"
               >
-                <Activity size={40} />
+                <Github size={40} />
               </a>
               <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
                 Veja meus repositórios

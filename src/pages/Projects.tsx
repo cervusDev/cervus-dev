@@ -1,6 +1,6 @@
-import { Timeline } from "@/components/Timeline";
-import projects from '@/constants/projects';
 import { motion } from "framer-motion";
+import projects from '@/constants/projects';
+import { Timeline } from "@/components/Timeline";
 
 function Projects() {
   return (
@@ -23,17 +23,6 @@ function Projects() {
             <br />
             Nesta sessão, apresento alguns dos{" "}
             <span className="text-orange-500">projetos em que participei</span>.
-            {/* destacando desafios e soluções implementadas. */}
-            <br />
-            {/* Para conhecer todos os detalhes, você pode baixar o PDF completo dos
-            projetos clicando{" "}
-            <span
-              className="text-orange-500 cursor-pointer"
-              onClick={() => window.open("/projetos.pdf", "_blank")}
-            >
-              aqui
-            </span>{" "}
-            ou em um dos cartões abaixo. */}
           </p>
         </div>
         <Timeline

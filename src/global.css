@@ -10,37 +10,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
-  background-color: #0f0f0f;
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(255, 255, 255, 0.1) 1px,
-    transparent 0
-  );
-  background-size: 24px 24px;
-  color: #e5e5e5;
-  font-family: "Inter", sans-serif; */
-
-  /* background: radial-gradient(circle at 20% 20%, #202020, #0d0d0d 70%) fixed,
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent),
-    radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.02) 1px,
-      transparent 1px
-    );
-
-  background-size: 100% 100%, 100% 100%, 24px 24px;
-  background-blend-mode: overlay;
-
-  animation: fogMove 20s ease-in-out infinite alternate;
-
-  color: rgba(255, 255, 255, 0.85);
-  font-family: "Inter", sans-serif;
-  min-height: 100vh;
-  margin: 0; */
-
   background-color: #0f0f0f;
   background-image: radial-gradient(
     circle at 1px 1px,

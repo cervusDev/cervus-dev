@@ -21,6 +21,7 @@ export interface TimelineDay {
 export interface TimelineMonth {
   id: string;
   label: string;
+  promotion?: string;
   days: TimelineDay[];
 }
 
@@ -88,6 +89,9 @@ function TimelineMonth({
         "
       >
         {month.label}
+        <p className="ml-2 text-xs text-neutral-400 italic">
+          {month?.promotion}
+        </p>
         <span
           className={`transition-transform duration-300 ${
             open ? "rotate-180" : ""
@@ -96,7 +100,6 @@ function TimelineMonth({
           ▼
         </span>
       </button>
-
       <div
         className={`
           transition-all duration-300

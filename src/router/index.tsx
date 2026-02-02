@@ -28,16 +28,16 @@ export const router = createBrowserRouter([
         ),
       },
       // { path: "projetos/:id", element: <ProjectDetail /> },
-      {
-        path: "textos",
-        element: (
-          <Suspense
-            fallback={<div className="p-6 text-white"></div>}
-          >
-            <Posts />
-          </Suspense>
-        ),
-      },
+      // {
+      //   path: "textos",
+      //   element: (
+      //     <Suspense
+      //       fallback={<div className="p-6 text-white"></div>}
+      //     >
+      //       <Posts />
+      //     </Suspense>
+      //   ),
+      // },
       { path: "textos/:id", element: <PostDetail /> },
       {
         path: "onde-estou",

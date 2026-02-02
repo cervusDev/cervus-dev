@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ResumeCard } from "@/components/ResumeCard";
+import { GiftEmailModal } from "@/components/SendGift";
 
 export default function Home() {
   return (
@@ -12,26 +13,19 @@ export default function Home() {
           className="space-y-6"
         >
           <span className="inline-block rounded-full bg-emerald-500/10 text-orange-400 px-4 py-1 text-sm">
-            Desenvolvedor Full Stack / Mobile
+            Desenvolvedor Full Stack / AWS
           </span>
 
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            Olá, eu sou <span className="text-orange-400">Gustavo Henrique</span>
+            Olá, eu sou{" "}
+            <span className="text-orange-400">Gustavo Henrique</span>
           </h1>
 
           <p className="text-zinc-400 text-lg max-w-xl">
-            Desenvolvedor especializado em desenvolvimento web. Crio aplicações escaláveis, performáticas e com foco
-            em experiência do usuário.
+            Desenvolvedor especializado em desenvolvimento de aplicações
+            escaláveis e performáticas.
           </p>
-
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="/projetos"
-              className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 font-medium text-white hover:bg-orange-400 transition"
-            >
-              Ver projetos <ArrowRight size={18} />
-            </a>
-          </div>
+          <GiftEmailModal />
         </motion.div>
 
         <motion.div
@@ -40,17 +34,10 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          <div className="rounded-3xl bg-zinc-900/70 border border-zinc-800 p-10 shadow-2xl">
-            <h3 className="text-xl font-semibold mb-6">Resumo rápido</h3>
-            <ul className="space-y-4 text-zinc-400">
-              <li>🚀 +5 anos de experiência com desenvolvimento web</li>
-              <li>⚛️ Next.js, Node.js, React Native e Expo</li>
-              <li>📱 Plataformas web, banco de dados e app mobile</li>
-              <li>🧠 Código limpo, arquitetura e performance</li>
-            </ul>
-          </div>
+          <ResumeCard />
         </motion.div>
       </section>
+      <section className="w-screen absolute left-1/2 bottom-0 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden"></section>
     </main>
   );
 }

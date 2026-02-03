@@ -7,7 +7,7 @@ export interface TimelineCard {
   navigation?: {
     url?: string;
     message?: string;
-  }
+  };
   items: {
     label: string;
     value: string;
@@ -199,6 +199,9 @@ const projects: TimelineMonth[] = [
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "Carroção",
+            navigation: {
+              url: 'https://carrocao.com/'
+            },
             footer: "- Rac",
             items: [
               {
@@ -208,7 +211,7 @@ const projects: TimelineMonth[] = [
               },
               {
                 label: "Descrição",
-                value: `O primeiro resort pedagógico do Brasil! Localizado em Tatuí (SP).`,
+                value: `ERP para resort pedagógico.`,
               },
             ],
           },
@@ -223,6 +226,9 @@ const projects: TimelineMonth[] = [
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "Interplan.RIO",
+            navigation: {
+              url: "https://web-interplan.apps.rio.gov.br/",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -241,6 +247,9 @@ municipais vigente`,
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "MS Ativo",
+            navigation: {
+              url: "https://www.fase3.msativo.ms.gov.br/",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -272,6 +281,9 @@ Grosso do Sul,`,
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "Interplan.RIO",
+            navigation: {
+              url: "https://web-interplan.apps.rio.gov.br/",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -290,6 +302,9 @@ municipais vigente`,
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "MS Ativo",
+            navigation: {
+              url: "https://www.fase3.msativo.ms.gov.br/",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -321,6 +336,9 @@ Grosso do Sul,`,
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "ABCR +",
+            navigation: {
+              url: "https://melhoresrodovias.org.br/painel-abcr/",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -339,6 +357,9 @@ indicadores de desempenho das Melhores Rodovias do Brasil`,
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "Amazonia Legal",
+            navigation: {
+              url: "https://amazonialegalemdados.info/home/home.php",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -357,6 +378,9 @@ focada na região da Amazônia Legal.`,
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "DGM",
+            navigation: {
+              url: "https://desafiosdosmunicipios.com.br/ranking_inicio.php",
+            },
             footer: "- Macroplan",
             items: [
               {
@@ -413,6 +437,9 @@ Segurança Pública (CidadeSusp).`,
             iconColor: "text-green-500",
             title: "Gestor Ponto",
             footer: "- Prosis",
+            navigation: {
+              url: "https://www.prosissoftwaregestao.com.br/produtos/gestor-p",
+            },
             items: [
               {
                 label: "Tecnologias",
@@ -422,7 +449,7 @@ Segurança Pública (CidadeSusp).`,
               {
                 label: "Descrição",
                 value: `O Gestor Ponto proporciona controle total da jornada de
-trabalho, otimizando processos ao integrar todas as etapas.u`,
+trabalho, otimizando processos ao integrar todas as etapas.`,
               },
             ],
           },
@@ -445,6 +472,9 @@ trabalho, otimizando processos ao integrar todas as etapas.u`,
             iconColor: "text-green-500",
             title: "Gestor Ponto",
             footer: "- Prosis",
+            navigation: {
+              url: "https://www.prosissoftwaregestao.com.br/produtos/gestor-p",
+            },
             items: [
               {
                 label: "Tecnologias",

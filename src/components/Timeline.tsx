@@ -169,16 +169,17 @@ function TimelineDay({
   );
 }
 
-
-function UnavailableProjectModal({
-  onClose,
-}: {
-  onClose: () => void;
-}) {
+function UnavailableProjectModal({ onClose }: { onClose: () => void }) {
   return (
     <AnimatePresence>
+      {/* Overlay */}
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+        className="
+          fixed inset-0 z-50
+          flex items-center justify-center
+          bg-black/60
+          backdrop-blur-sm
+        "
         role="dialog"
         aria-modal="true"
         initial={{ opacity: 0 }}
@@ -187,35 +188,84 @@ function UnavailableProjectModal({
         transition={{ duration: 0.25, ease: "easeOut" }}
         onClick={onClose}
       >
+        {/* Modal */}
         <motion.div
-          className="bg-[#17191B] text-white rounded-lg p-6 max-w-md w-full shadow-lg"
-          initial={{ scale: 0.9, opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
+          initial={{ scale: 0.92, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          onClick={(e) => e.stopPropagation()}
+          className="
+            relative
+            w-full max-w-md
+            p-6
+            rounded-2xl
+
+            bg-white/5
+            backdrop-blur-xl
+            border border-white/20
+
+            text-white
+            shadow-[0_20px_50px_rgba(0,0,0,0.45)]
+          "
         >
-          <h2 className="text-lg font-semibold mb-3">
-            Projeto indisponível
-          </h2>
+          {/* Reflexo de vidro */}
+          <span
+            className="
+              pointer-events-none
+              absolute inset-0
+              rounded-2xl
+              bg-gradient-to-br
+              from-white/20
+              via-white/5
+              to-transparent
+              opacity-40
+            "
+          />
 
-          <p className="text-sm text-gray-300 mb-6">
-            Este projeto ainda não está disponível para acesso público.
-          </p>
+          {/* Glow interno */}
+          <span
+            className="
+              pointer-events-none
+              absolute inset-0
+              rounded-2xl
+              shadow-inner
+              shadow-white/10
+            "
+          />
 
-          <div className="flex justify-end">
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded bg-orange-500 hover:bg-orange-600 transition"
-            >
-              Entendi
-            </button>
+          {/* Conteúdo */}
+          <div className="relative z-10">
+            <h2 className="text-lg font-semibold mb-3">
+              Projeto indisponível
+            </h2>
+
+            <p className="text-sm text-gray-300 mb-6">
+              Este projeto ainda não está disponível para acesso público.
+            </p>
+
+            <div className="flex justify-end">
+              <button
+                onClick={onClose}
+                className="
+                  px-4 py-2
+                  rounded-md
+                  bg-orange-500/90
+                  hover:bg-orange-600
+                  transition
+                "
+              >
+                Entendi
+              </button>
+            </div>
           </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
   );
 }
+
+export default UnavailableProjectModal;
 
 
 function TimelineCard({
@@ -229,47 +279,94 @@ function TimelineCard({
     <div
       onClick={onNavigation}
       className="
-    group
-    relative overflow-hidden
-    bg-[#444950]
-    border border-[#17191B]
-    rounded-[15px]
-    rounded-tl-none rounded-br-none
-    flex flex-col
-    h-full
-    cursor-pointer
+        group
+        relative overflow-hidden
+        cursor-pointer
+        flex flex-col h-full
 
-    transition-all duration-200 ease-out
-    hover:scale-[1.02]
-    hover:border-[#2F80ED]
-    hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)]
-  "
+        rounded-[15px]
+        rounded-tl-none rounded-br-none
+
+        bg-white/2
+        backdrop-blur-xl
+        border border-white/20
+
+        transition-all duration-200 ease-out
+        hover:scale-[1.02]
+        hover:border-[0_0_40px_rgba(249,115,22,0.15)]
+        hover:shadow-[0_0_40px_rgba(249,115,22,0.15)]
+      "
     >
-      <div className="px-[15px] py-[5px] border-b border-[#17191B] text-white">
+      {/* Reflexo de vidro */}
+      <span
+        className="
+          pointer-events-none
+          absolute inset-0
+          rounded-[15px]
+          rounded-tl-none rounded-br-none
+          bg-gradient-to-br
+          from-white/20
+          via-white/5
+          to-transparent
+          opacity-40
+        "
+      />
+
+      {/* Glow interno */}
+      <span
+        className="
+          pointer-events-none
+          absolute inset-0
+          rounded-[15px]
+          rounded-tl-none rounded-br-none
+          shadow-inner
+          shadow-white/10
+        "
+      />
+
+      {/* Header */}
+      <div
+        className="
+        relative z-10
+        px-[15px] py-[5px]
+        border-b border-white/10
+        text-white
+      "
+      >
         <i className={`fa ${card.icon} ${card.iconColor} mr-1`} />
         {card.title}
       </div>
 
-      <div className="px-[15px] py-[5px] bg-[#17191B] text-sm flex-1">
+      {/* Body */}
+      <div
+        className="
+        relative z-10
+        px-[15px] py-[5px]
+        text-sm flex-1
+        bg-black/30
+      "
+      >
         {card.items.map((item, i) => (
           <div key={i} className="mb-[5px]">
-            <strong className="italic text-[#666] mr-1">{item.label}</strong>:
-            {item.value}
+            <strong className="italic text-[#999] mr-1">{item.label}</strong>:
+            <span className="text-gray-200 ml-1">{item.value}</span>
           </div>
         ))}
       </div>
 
+      {/* Footer */}
       <div
         className="
-  px-[15px] py-[5px]
-  h-[40px]
-  flex items-center justify-end
-  border-t border-[#17191B]
-  text-right italic text-white
+          relative z-10
+          px-[15px] py-[5px]
+          h-[40px]
+          flex items-center justify-end
+          border-t border-white/10
+          text-right italic text-white
 
-  transition-colors duration-200
-  group-hover:text-orange-400
-"
+          transition-colors duration-200
+          group-hover:text-orange-400
+        "
       >
         {card.footer}
       </div>

@@ -19,10 +19,10 @@ class HttpClient {
       },
       (error) => {
         if (error.response) {
-          const { status } = error.response;
+          // const { status } = error.response;
 
-          if (status === 401) {
-          }
+          // if (status === 401) {
+          // }
 
           return Promise.reject(error);
         }

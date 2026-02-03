@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 import NotFound from "../pages/NotFound";
 import { createBrowserRouter } from "react-router";
 
-const Posts = lazy(() => import("../pages/Posts"));
+// const Posts = lazy(() => import("../pages/Posts"));
 const Contact = lazy(() => import("../pages/Contact"));
 const WhereIAm = lazy(() => import("../pages/WhereIAm"));
 const Projects = lazy(() => import("../pages/Projects"));

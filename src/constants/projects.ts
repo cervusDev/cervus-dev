@@ -42,9 +42,6 @@ const projects: TimelineMonth[] = [
             icon: "fa-asterisk",
             iconColor: "text-green-500",
             title: "ERP - interno",
-            navigation: {
-              url: '',
-            },
             footer: "- Rac",
             items: [
               {

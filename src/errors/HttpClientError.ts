@@ -17,7 +17,7 @@ class HttpClientError extends Error {
     const safeMessage =
       message ||
       (typeof body === 'object' && body && 'message' in body
-        ? (body as any).message
+        ? (body as { message: string }).message
         : `Erro HTTP ${status ?? 'desconhecido'} (${url ?? 'URL desconhecida'})`);
 
     super(safeMessage);
@@ -27,10 +27,6 @@ class HttpClientError extends Error {
     this.response = response;
     this.status = status ?? 500;
     this.url = url;
-
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, HttpClientError);
-    }
   }
 }
 

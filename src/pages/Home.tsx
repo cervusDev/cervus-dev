@@ -5,7 +5,15 @@ import { GiftEmailModal } from "@/components/SendGift";
 export default function Home() {
   return (
     <main>
-      <section className="container mx-auto px-6 pt-24 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section
+        className="
+          container mx-auto px-6
+          pt-0 md:pt-24
+          pb-32
+          grid grid-cols-1 lg:grid-cols-2
+          gap-16 items-center
+        "
+        >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -65,13 +65,13 @@ function Header() {
               >
                 Projetos
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/textos"
                 className="hover:text-orange-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Textos
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/onde-estou"
                 className="hover:text-orange-500 transition-colors"

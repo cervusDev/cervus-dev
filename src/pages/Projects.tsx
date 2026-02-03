@@ -4,7 +4,7 @@ import { Timeline } from "@/components/Timeline";
 
 function Projects() {
   return (
-    <section className="py-12">
+    <section className="py-0 md:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

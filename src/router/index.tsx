@@ -5,11 +5,9 @@ import NotFound from "../pages/NotFound";
 import { createBrowserRouter } from "react-router";
 
 // const Posts = lazy(() => import("../pages/Posts"));
+// const PostDetail = lazy(() => import("../pages/PostDetail"));
 const Contact = lazy(() => import("../pages/Contact"));
-const WhereIAm = lazy(() => import("../pages/WhereIAm"));
 const Projects = lazy(() => import("../pages/Projects"));
-const PostDetail = lazy(() => import("../pages/PostDetail"));
-// const ProjectDetail = lazy(() => import("../pages/ProjectDetails"));
 
 export const router = createBrowserRouter([
   {
@@ -38,17 +36,7 @@ export const router = createBrowserRouter([
       //     </Suspense>
       //   ),
       // },
-      { path: "textos/:id", element: <PostDetail /> },
-      {
-        path: "onde-estou",
-        element: (
-          <Suspense
-            fallback={<div className="p-6 text-white"></div>}
-          >
-            <WhereIAm />
-          </Suspense>
-        ),
-      },
+      // { path: "textos/:id", element: <PostDetail /> },
       {
         path: "contato",
         element: (

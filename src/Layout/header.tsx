@@ -26,12 +26,6 @@ function Header() {
             Textos
           </NavLink> */}
           <NavLink
-            to="/onde-estou"
-            className="hover:text-orange-500 transition-colors"
-          >
-            Onde estou?
-          </NavLink>
-          <NavLink
             to="/contato"
             className="hover:text-orange-500 transition-colors"
           >
@@ -72,13 +66,6 @@ function Header() {
               >
                 Textos
               </NavLink> */}
-              <NavLink
-                to="/onde-estou"
-                className="hover:text-orange-500 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Onde estou?
-              </NavLink>
               <NavLink
                 to="/contato"
                 className="hover:text-orange-500 transition-colors"

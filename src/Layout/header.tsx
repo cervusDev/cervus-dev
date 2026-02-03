@@ -15,7 +15,7 @@ function Header() {
         <nav className="hidden md:flex space-x-8">
           <NavLink
             to="/projetos"
-            className="nav-link"
+            className="hover:text-orange-500 transition-colors"
           >
             Projetos
           </NavLink>
@@ -73,7 +73,7 @@ function Header() {
                 Textos
               </NavLink>
               <NavLink
-                to="onde-estou"
+                to="/onde-estou"
                 className="hover:text-orange-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >

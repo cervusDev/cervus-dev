@@ -21,11 +21,6 @@ function Projects() {
               trabalhei em diversos projetos que me permitiram adquirir
               conhecimento sólido e prático.
               <br />
-              Nesta sessão, apresento alguns dos{" "}
-              <span className="text-orange-500">
-                projetos em que participei
-              </span>
-              .
             </p>
           </div>
 

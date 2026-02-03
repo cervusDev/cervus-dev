@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import projects, { type TimelineMonth } from "@/constants/projects";
+import projects from "@/constants/projects";
 import { Timeline } from "@/components/Timeline";
 
 function Projects() {
-  const featuredProjects = projects.slice(0, 3);
   return (
     <section className="py-12">
       <motion.div

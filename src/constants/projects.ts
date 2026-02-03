@@ -23,7 +23,6 @@ export interface TimelineDay {
 export interface TimelineMonth {
   id: string;
   label: string;
-  promotion?: string;
   days: TimelineDay[];
 }
 
@@ -31,7 +30,6 @@ const projects: TimelineMonth[] = [
   {
     id: "0",
     label: "2026",
-    promotion: "🚀 Pleno II",
     days: [
       {
         id: "0",
@@ -113,7 +111,6 @@ const projects: TimelineMonth[] = [
   {
     id: "jul-2025",
     label: "2025",
-    promotion: "🚀 Pleno I",
     days: [
       {
         id: "1",
@@ -270,7 +267,6 @@ Grosso do Sul,`,
   {
     id: "aug-2018",
     label: "2024",
-    promotion: "🚀 Pleno I",
     days: [
       {
         id: "21",
@@ -325,7 +321,6 @@ Grosso do Sul,`,
   {
     id: "aug-2018",
     label: "2023",
-    promotion: "🚀 Junior III ",
     days: [
       {
         id: "21",
@@ -401,7 +396,6 @@ panorama de 2010 a 2023 das 100 maiores cidades.`,
   {
     id: "aug-2018",
     label: "2022",
-    promotion: "🚀 Junior II",
     days: [
       {
         id: "21",
@@ -460,7 +454,6 @@ trabalho, otimizando processos ao integrar todas as etapas.`,
   {
     id: "aug-2018",
     label: "2021",
-    promotion: "🚀 Junior I",
     days: [
       {
         id: "21",

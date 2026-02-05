@@ -42,8 +42,7 @@ function Applications() {
               São aplicações que abordam{" "}
               <span className="text-orange-500">
                 boas práticas, tecnologias e aprendizados
-              </span>{" "}
-              adquiridos em mais de 5 anos atuando como desenvolvedor.
+              </span>.
             </p>
           </div>
 

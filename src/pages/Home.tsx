@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ResumeCard } from "@/components/ResumeCard";
-import { GiftEmailModal } from "@/components/SendGift";
+import { EmailComposer } from "@/components/EmailComposer";
 
 export default function Home() {
   return (
@@ -33,7 +33,7 @@ export default function Home() {
             Desenvolvedor especializado em desenvolvimento de aplicações
             escaláveis e performáticas.
           </p>
-          <GiftEmailModal />
+          <EmailComposer />
         </motion.div>
 
         <motion.div

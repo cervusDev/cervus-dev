@@ -14,17 +14,17 @@ function Header() {
 
         <nav className="hidden md:flex space-x-8">
           <NavLink
-            to="/projetos"
+            to="/portifolio"
             className="hover:text-orange-500 transition-colors"
           >
-            Projetos
+            Portifólio
           </NavLink>
-          {/* <NavLink
-            to="/textos"
+          <NavLink
+            to="/aplicativos"
             className="hover:text-orange-500 transition-colors"
           >
-            Textos
-          </NavLink> */}
+            Aplicativos
+          </NavLink>
           <NavLink
             to="/contato"
             className="hover:text-orange-500 transition-colors"
@@ -53,19 +53,19 @@ function Header() {
 
             <div className="mt-12 flex flex-col space-y-6">
               <NavLink
-                to="/projetos"
+                to="/portifolio"
                 className="hover:text-orange-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Projetos
+                Portifólio
               </NavLink>
-              {/* <NavLink
-                to="/textos"
+              <NavLink
+                to="/aplicativos"
                 className="hover:text-orange-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Textos
-              </NavLink> */}
+                Aplicativoss
+              </NavLink>
               <NavLink
                 to="/contato"
                 className="hover:text-orange-500 transition-colors"

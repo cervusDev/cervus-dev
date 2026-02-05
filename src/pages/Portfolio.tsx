@@ -12,7 +12,7 @@ function Projects() {
         className="space-y-6"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-white">Projetos</h2>
+          <h2 className="text-3xl font-bold mb-8 text-white">Portifólio</h2>
 
           <div className="w-[80%] mb-12">
             <p className="text-white text-lg mt-4">

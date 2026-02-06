@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  AWS_BUCKET: erp.racsys.com.br
-
 jobs:
   # =========================
   # CI — Lint + Typecheck
@@ -86,7 +83,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./dist/ s3://${{ env.AWS_BUCKET }} --delete
+        run: aws s3 sync ./dist/ s3://${{ secrets.AWS_BUCKET }} --delete
 
       - name: Invalidate CloudFront
         run: |

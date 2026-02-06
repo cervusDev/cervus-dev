@@ -6,8 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  AWS_BUCKET: erp.racsys.com.br
+
 jobs:
-  # Job de CI: lint, typecheck, install dependencies
+  # =========================
+  # CI — Lint + Typecheck
+  # =========================
   ci:
     runs-on: ubuntu-latest
 
@@ -15,39 +20,35 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 1️⃣ Instala o pnpm ANTES do cache
-      - name: Install pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
 
-      # 2️⃣ Setup do Node + cache pnpm
-      - name: Use Node.js 22.x
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22.x'
           cache: 'pnpm'
 
-      # 3️⃣ (Opcional, mas recomendado) valida versão
       - name: Verify versions
         run: |
           node --version
           pnpm --version
 
-      # 4️⃣ Instala dependências de forma reprodutível
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # 5️⃣ Linting
-      - name: Linting
+      - name: Lint
         run: pnpm run ci:lint
 
-      # 6️⃣ Typechecking
-      - name: Typechecking
+      - name: Typecheck
         run: pnpm run ci:typecheck
 
-  # Job de CD: build e deploy, depende do CI
+  # =========================
+  # CD — Build + Deploy
+  # =========================
   cd:
     runs-on: ubuntu-latest
     needs: ci
@@ -56,13 +57,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
 
-      - name: Use Node.js 22.x
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22.x'
@@ -85,7 +86,10 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./dist/ s3://${{ AWS_BUCKET }} --delete
+        run: aws s3 sync ./dist/ s3://${{ env.AWS_BUCKET }} --delete
 
       - name: Invalidate CloudFront
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths '/*' > /dev/null
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} \
+            --paths '/*' > /dev/null

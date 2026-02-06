@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  AWS_BUCKET: erp.racsys.com.br
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -43,3 +46,22 @@ jobs:
 
       - name: Typechecking
         run: pnpm run ci:typecheck
+
+      - name: Build React App
+        run: pnpm build
+        env:
+          NODE_ENV: production
+          GENERATE_SOURCEMAP: false
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          aws-region: us-east-1
+
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./dist/ s3://$AWS_BUCKET --delete
+
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths '/*' > /dev/null

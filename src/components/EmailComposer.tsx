@@ -3,7 +3,12 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useCallback } from "react";
-import { useForm, Controller, type Control, type UseFormReturn } from "react-hook-form";
+import {
+  useForm,
+  Controller,
+  type Control,
+  type UseFormReturn,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -32,9 +37,7 @@ export function EmailComposer() {
   });
 
   const onSubmit = useCallback(async (values: EmailFormData) => {
-    try {
-      console.log("values", values);
-    } catch (err) {}
+    console.log("values", values);
   }, []);
 
   const subjectError = form.formState.errors.subject;
@@ -174,22 +177,30 @@ interface IEmailEditor {
 
 function EmailEditor({ control, form }: IEmailEditor) {
   const bodyError = form.formState.errors.body;
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Placeholder.configure({
+        placeholder: "Escreva seu e-mail...",
+      }),
+    ],
+    content: "",
+  });
+
   return (
     <Controller
       name="body"
       control={control}
       render={({ field }) => {
-        const editor = useEditor({
-          extensions: [
-            StarterKit,
-            Placeholder.configure({
-              placeholder: "Escreva seu e-mail...",
-            }),
-          ],
-          content: field.value,
-          onUpdate({ editor }) {
-            field.onChange(editor.getHTML());
-          },
+        // sincroniza RHF → TipTap
+        if (editor && field.value !== editor.getHTML()) {
+          editor.commands.setContent(field.value || "");
+        }
+
+        // sincroniza TipTap → RHF
+        editor?.on("update", () => {
+          field.onChange(editor.getHTML());
         });
 
         return (
@@ -197,22 +208,23 @@ function EmailEditor({ control, form }: IEmailEditor) {
             <EditorContent
               editor={editor}
               className="
-          min-h-[250px]
-          rounded-xl
-          bg-white/10 backdrop-blur-md
-          border border-white/20
-          p-4
-          text-white
-          prose prose-invert max-w-none
-          focus:outline-none
+                min-h-[250px]
+                rounded-xl
+                bg-white/10 backdrop-blur-md
+                border border-white/20
+                p-4
+                text-white
+                prose prose-invert max-w-none
+                focus:outline-none
 
-          [&_.ProseMirror]:min-h-[200px]
-          [&_.ProseMirror]:outline-none
-          [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-white/40
-        "
+                [&_.ProseMirror]:min-h-[200px]
+                [&_.ProseMirror]:outline-none
+                [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-white/40
+              "
             />
+
             {bodyError && (
-              <p id="subject-error" className="mt-1 text-sm text-red-400">
+              <p className="mt-1 text-sm text-red-400">
                 {bodyError.message}
               </p>
             )}
@@ -222,6 +234,7 @@ function EmailEditor({ control, form }: IEmailEditor) {
     />
   );
 }
+
 
 /* =======================
    ATTACHMENTS

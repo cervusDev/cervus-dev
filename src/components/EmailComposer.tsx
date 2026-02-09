@@ -69,8 +69,11 @@ export function EmailComposer() {
         subject: values.subject,
         attachments: values.attachments,
       });
-    } catch (err) {}
-  }, []);
+      form.reset();
+    } catch (err) {
+      console.log('send email error', err)
+    }
+  }, [form]);
 
   const subjectError = form.formState.errors.subject;
 

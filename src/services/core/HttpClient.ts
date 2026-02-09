@@ -140,7 +140,7 @@ class HttpClient {
     }
   }
 
-  public async postFormData<T = any>({
+  public async postFormData<T = unknown>({
     path,
     formData,
     headers,

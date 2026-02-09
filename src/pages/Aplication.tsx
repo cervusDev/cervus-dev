@@ -1,24 +1,16 @@
+import { UnavailableProjectModal } from "@/components/UnavailableProjectModal";
+import { applications } from "@/models/application";
 import { motion } from "framer-motion";
-
-interface IApplications {
-  id: string;
-  url: string;
-  title: string;
-  description: string;
-}
-
-const applications: IApplications[] = [
-  {
-    id: "1",
-    title: "Serene",
-    url: "https://serene.cervusdev.com.br",
-    description:
-      "Agende consultas de forma rápida e eficiente enquanto acompanha tudo pelo nosso dashboard inteligente.",
-  },
-];
+import { useState } from "react";
 
 function Applications() {
-  const hadleNavigate = (url: string) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = (url: string) => {
+    if (!url) {
+      setIsModalOpen(true);
+      return;
+    }
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -36,13 +28,16 @@ function Applications() {
           <div className="w-[80%] mb-12">
             <p className="text-white text-lg mt-4">
               Nesta sessão apresento{" "}
-              <span className="text-orange-500">experiências de desenvolvimento</span> 
+              <span className="text-orange-500">
+                experiências de desenvolvimento
+              </span>
               .
               <br />
               São aplicações que abordam{" "}
               <span className="text-orange-500">
                 boas práticas, tecnologias e aprendizados
-              </span>.
+              </span>
+              .
             </p>
           </div>
 
@@ -53,7 +48,7 @@ function Applications() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                onClick={() => hadleNavigate(post.url)}
+                onClick={() => navigate(post.url)}
                 className="
                   group
                   relative overflow-hidden flex flex-col h-full
@@ -132,7 +127,7 @@ function Applications() {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      hadleNavigate(post.url);
+                      navigate(post.url);
                     }}
                     className="
                       text-sm text-orange-500
@@ -148,6 +143,12 @@ function Applications() {
           </div>
         </div>
       </motion.div>
+      {isModalOpen && (
+        <UnavailableProjectModal
+          onClose={() => setIsModalOpen(false)}
+          message="Este projeto ainda está em desenvolvimento."
+        />
+      )}
     </section>
   );
 }

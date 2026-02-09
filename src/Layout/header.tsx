@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
+import { UnavailableProjectModal } from "@/components/UnavailableProjectModal";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <header className="text-white relative z-50">
@@ -28,6 +30,12 @@ function Header() {
           >
             Aplicativos
           </NavLink>
+          <div
+            onClick={() => setIsModalOpen(true)}
+            className="hover:text-orange-500 transition-colors cursor-pointer"
+          >
+            Artigos
+          </div>
           <NavLink
             to="/contato"
             className="hover:text-orange-500 transition-colors"
@@ -55,45 +63,45 @@ function Header() {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="
-  md:hidden
-  overflow-hidden
+              md:hidden
+              overflow-hidden
 
-  bg-white/10
-  backdrop-blur-xl
+              bg-white/10
+              backdrop-blur-xl
 
-  border-t border-white/20
-  shadow-[0_8px_30px_rgba(0,0,0,0.25)]
+              border-t border-white/20
+              shadow-[0_8px_30px_rgba(0,0,0,0.25)]
 
-  relative
-  z-[1001]
-"
+              relative
+              z-[1001]
+            "
           >
             <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
               <NavLink
                 to="/portifolio"
                 onClick={() => setIsOpen(false)}
                 className="
-  w-full
-  px-4 py-3
-  rounded-xl
+                  w-full
+                  px-4 py-3
+                  rounded-xl
 
-  text-sm font-semibold
-  text-white/90
+                  text-sm font-semibold
+                  text-white/90
 
-  bg-white/10
-  backdrop-blur-md
+                  bg-white/10
+                  backdrop-blur-md
 
-  border border-white/20
-  shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
+                  border border-white/20
+                  shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
 
-  hover:bg-white/20
-  hover:border-white/30
-  hover:text-orange-400
+                  hover:bg-white/20
+                  hover:border-white/30
+                  hover:text-orange-400
 
-  active:scale-[0.97]
+                  active:scale-[0.97]
 
-  transition-all duration-200
-"
+                  transition-all duration-200
+                "
               >
                 Portifólio
               </NavLink>
@@ -101,27 +109,27 @@ function Header() {
               <NavLink
                 to="/aplicativos"
                 className="
-  w-full
-  px-4 py-3
-  rounded-xl
+                  w-full
+                  px-4 py-3
+                  rounded-xl
 
-  text-sm font-semibold
-  text-white/90
+                  text-sm font-semibold
+                  text-white/90
 
-  bg-white/10
-  backdrop-blur-md
+                  bg-white/10
+                  backdrop-blur-md
 
-  border border-white/20
-  shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
+                  border border-white/20
+                  shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
 
-  hover:bg-white/20
-  hover:border-white/30
-  hover:text-orange-400
+                  hover:bg-white/20
+                  hover:border-white/30
+                  hover:text-orange-400
 
-  active:scale-[0.97]
+                  active:scale-[0.97]
 
-  transition-all duration-200
-"
+                  transition-all duration-200
+                "
                 onClick={() => setIsOpen(false)}
               >
                 Aplicativos
@@ -130,27 +138,27 @@ function Header() {
               <NavLink
                 to="/contato"
                 className="
-  w-full
-  px-4 py-3
-  rounded-xl
+                  w-full
+                  px-4 py-3
+                  rounded-xl
 
-  text-sm font-semibold
-  text-white/90
+                  text-sm font-semibold
+                  text-white/90
 
-  bg-white/10
-  backdrop-blur-md
+                  bg-white/10
+                  backdrop-blur-md
 
-  border border-white/20
-  shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
+                  border border-white/20
+                  shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]
 
-  hover:bg-white/20
-  hover:border-white/30
-  hover:text-orange-400
+                  hover:bg-white/20
+                  hover:border-white/30
+                  hover:text-orange-400
 
-  active:scale-[0.97]
+                  active:scale-[0.97]
 
-  transition-all duration-200
-"
+                  transition-all duration-200
+                "
                 onClick={() => setIsOpen(false)}
               >
                 Contato
@@ -159,6 +167,12 @@ function Header() {
           </motion.nav>
         )}
       </AnimatePresence>
+      {isModalOpen && (
+        <UnavailableProjectModal
+          onClose={() => setIsModalOpen(false)}
+          message="Página em desenvolvimento."
+        />
+      )}
     </header>
   );
 }

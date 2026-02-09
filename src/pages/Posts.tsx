@@ -1,4 +1,4 @@
-import { postsData } from "@/constants/posts";
+import { postsData } from "@/models/posts";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router";
 

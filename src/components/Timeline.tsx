@@ -2,7 +2,7 @@ import type {
   TimelineMonth,
   TimelineDay,
   TimelineCard,
-} from "@/constants/projects";
+} from "@/models/projects";
 import { useState } from "react";
 import { UnavailableProjectModal } from "./UnavailableProjectModal";
 

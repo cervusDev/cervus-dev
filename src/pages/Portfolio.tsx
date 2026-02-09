@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import projects from "@/constants/projects";
+import projects from "@/models/projects";
 import { Timeline } from "@/components/Timeline";
 import { featuredProjects } from "@/models/featureProjects";
 import { FeaturedProjects } from "@/components/FeatureProject";

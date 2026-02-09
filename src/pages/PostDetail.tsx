@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import Sidebar from "../components/SideBarContent";
 import ScrollProgress from "@/components/ScrollProgress";
-import { postsData } from "@/constants/posts";
+import { postsData } from "@/models/posts";
 
 export default function PostDetail() {
   const { id } = useParams();

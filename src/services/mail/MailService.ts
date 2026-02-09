@@ -1,18 +1,30 @@
+import { createFormData } from "@/utils/formDataFromBody";
 import HttpClient from "../core/HttpClient";
 import type { IMailRepository } from "./IMailRepository";
 import type { ISendMailServiceInputData } from "./dtos/send/InputData";
 
 interface ISendBodyResponse {
-  email: string;
+  subject: string;
+  text: string;
+  attachments: File[] | undefined;
+  [key: string]: string | File[] | undefined;
 }
 
-export class MailService implements IMailRepository {
+class MailService implements IMailRepository {
   public async send(inputData: ISendMailServiceInputData): Promise<void> {
-    await HttpClient.post<void, ISendBodyResponse>({
+    const body: ISendBodyResponse = {
+      attachments: inputData.attachments,
+      subject: inputData.subject,
+      text: inputData.text,
+    };
+
+    const formData = createFormData(body, ["attachments"]);
+
+    await HttpClient.postFormData<void>({
       path: "/",
-      body: {
-        email: inputData.email,
-      },
+      formData,
     });
   }
 }
+
+export default new MailService();

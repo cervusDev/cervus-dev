@@ -11,10 +11,12 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import MailService from "@/services/mail/MailService";
+import { allowedTypes, maxFileSize } from "@/config/file";
 
 const formSchema = z.object({
   subject: z.string().min(3, "Informe o assunto"),
-  body: z.string().min(10, "O corpo do email é obrigatório"),
+  text: z.string().min(10, "O corpo do email é obrigatório"),
   attachments: z
     .array(z.instanceof(File))
     .max(5, "Máximo de 5 anexos")
@@ -31,13 +33,43 @@ export function EmailComposer() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       subject: "",
-      body: "",
+      text: "",
       attachments: [],
     },
   });
 
   const onSubmit = useCallback(async (values: EmailFormData) => {
-    console.log("values", values);
+    try {
+      if (values.attachments) {
+        if (values.attachments.length > 3) {
+          form.setError("attachments", {
+            message: "Máximo de 3 anexos permitidos.",
+          });
+          return;
+        }
+
+        for (const file of values.attachments) {
+          if (!allowedTypes.includes(file.type)) {
+            form.setError("attachments", {
+              message: `Tipo de arquivo não permitido: ${file.name}`,
+            });
+            return;
+          }
+          if (file.size > maxFileSize) {
+            form.setError("attachments", {
+              message: `Arquivo muito grande: ${file.name}`,
+            });
+            return;
+          }
+        }
+      }
+
+      MailService.send({
+        text: values.text,
+        subject: values.subject,
+        attachments: values.attachments,
+      });
+    } catch (err) {}
   }, []);
 
   const subjectError = form.formState.errors.subject;
@@ -176,7 +208,7 @@ interface IEmailEditor {
 }
 
 function EmailEditor({ control, form }: IEmailEditor) {
-  const bodyError = form.formState.errors.body;
+  const bodyError = form.formState.errors.text;
 
   const editor = useEditor({
     extensions: [
@@ -190,7 +222,7 @@ function EmailEditor({ control, form }: IEmailEditor) {
 
   return (
     <Controller
-      name="body"
+      name="text"
       control={control}
       render={({ field }) => {
         // sincroniza RHF → TipTap
@@ -224,9 +256,7 @@ function EmailEditor({ control, form }: IEmailEditor) {
             />
 
             {bodyError && (
-              <p className="mt-1 text-sm text-red-400">
-                {bodyError.message}
-              </p>
+              <p className="mt-1 text-sm text-red-400">{bodyError.message}</p>
             )}
           </div>
         );
@@ -234,7 +264,6 @@ function EmailEditor({ control, form }: IEmailEditor) {
     />
   );
 }
-
 
 /* =======================
    ATTACHMENTS
@@ -248,8 +277,9 @@ function Attachments({ control }: IAttachements) {
     <Controller
       name="attachments"
       control={control}
-      render={({ field }) => {
+      render={({ field, fieldState }) => {
         const files: File[] = field.value || [];
+        const error = fieldState.error;
 
         function removeFile(index: number) {
           const updatedFiles = files.filter((_, i) => i !== index);
@@ -318,6 +348,8 @@ function Attachments({ control }: IAttachements) {
                 ))}
               </div>
             )}
+
+            {error && <p className="text-sm text-red-400">{error.message}</p>}
           </div>
         );
       }}

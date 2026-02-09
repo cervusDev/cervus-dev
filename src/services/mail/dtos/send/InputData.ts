@@ -1,3 +1,5 @@
 export interface ISendMailServiceInputData {
-    email: string;
+  subject: string;
+  text: string;
+  attachments: File[] | undefined;
 }

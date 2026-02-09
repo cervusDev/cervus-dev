@@ -1,10 +1,12 @@
-import HttpClientError from '@/errors/HttpClientError';
+import { env } from "@/config/env";
+import HttpClientError from "@/errors/HttpClientError";
 import axios, {
   type AxiosInstance,
+  type AxiosRequestConfig,
   type AxiosResponse,
   isAxiosError,
   type RawAxiosRequestHeaders,
-} from 'axios';
+} from "axios";
 
 class HttpClient {
   private readonly instance: AxiosInstance;
@@ -52,10 +54,9 @@ class HttpClient {
           response: err.response,
           status: err.response?.status || 400,
           url: err.response?.config.baseURL,
-          
         });
       }
-      throw new Error('Erro não tratado');
+      throw new Error("Erro não tratado");
     }
   }
 
@@ -83,7 +84,7 @@ class HttpClient {
       if (err instanceof Error) {
         throw new Error(err.message);
       }
-      throw new Error('Erro não tratado');
+      throw new Error("Erro não tratado");
     }
   }
 
@@ -110,7 +111,7 @@ class HttpClient {
           status: err.response?.status || 400,
         });
       }
-      throw new Error('Erro não tratado');
+      throw new Error("Erro não tratado");
     }
   }
 
@@ -135,12 +136,32 @@ class HttpClient {
           status: err.response?.status || 400,
         });
       }
-      throw new Error('Erro não tratado');
+      throw new Error("Erro não tratado");
     }
   }
 
+  public async postFormData<T = any>({
+    path,
+    formData,
+    headers,
+  }: {
+    path: string;
+    formData: FormData;
+    headers?: Record<string, string>;
+  }): Promise<T> {
+    const config: AxiosRequestConfig = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        ...headers,
+      },
+    };
+
+    const response = await this.instance.post<T>(path, formData, config);
+    return response.data;
+  }
+
   public removeBearerToken(): void {
-    this.instance.defaults.headers.common.Authorization = '';
+    this.instance.defaults.headers.common.Authorization = "";
   }
 
   public setBearerToken(token: string): void {
@@ -148,4 +169,4 @@ class HttpClient {
   }
 }
 
-export default new HttpClient('http://localhost:3333/');
+export default new HttpClient(env.apiEmailUrl);

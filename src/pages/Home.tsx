@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ResumeCard } from "@/components/ResumeCard";
-import { EmailComposer } from "@/components/EmailComposer";
+import { EmailComposer } from "@/components/email/Composer";
 
 export default function Home() {
   return (

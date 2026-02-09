@@ -1,18 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
 import { useCallback } from "react";
 import {
   useForm,
-  Controller,
-  type Control,
-  type UseFormReturn,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import MailService from "@/services/mail/MailService";
 import { allowedTypes, maxFileSize } from "@/config/file";
+import { EmailEditor } from "./Editor";
+import { Attachments } from "./Attachments";
 
 const formSchema = z.object({
   subject: z.string().min(3, "Informe o assunto"),
@@ -25,9 +21,6 @@ const formSchema = z.object({
 
 export type EmailFormData = z.infer<typeof formSchema>;
 
-/* =======================
-   EMAIL COMPOSER
-======================= */
 export function EmailComposer() {
   const form = useForm<EmailFormData>({
     resolver: zodResolver(formSchema),
@@ -199,163 +192,5 @@ export function EmailComposer() {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  );
-}
-
-/* =======================
-   EDITOR
-======================= */
-interface IEmailEditor {
-  control: Control<EmailFormData>;
-  form: UseFormReturn<EmailFormData>;
-}
-
-function EmailEditor({ control, form }: IEmailEditor) {
-  const bodyError = form.formState.errors.text;
-
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: "Escreva seu e-mail...",
-      }),
-    ],
-    content: "",
-  });
-
-  return (
-    <Controller
-      name="text"
-      control={control}
-      render={({ field }) => {
-        // sincroniza RHF → TipTap
-        if (editor && field.value !== editor.getHTML()) {
-          editor.commands.setContent(field.value || "");
-        }
-
-        // sincroniza TipTap → RHF
-        editor?.on("update", () => {
-          field.onChange(editor.getHTML());
-        });
-
-        return (
-          <div className="p-4">
-            <EditorContent
-              editor={editor}
-              className="
-                min-h-[250px]
-                rounded-xl
-                bg-white/10 backdrop-blur-md
-                border border-white/20
-                p-4
-                text-white
-                prose prose-invert max-w-none
-                focus:outline-none
-
-                [&_.ProseMirror]:min-h-[200px]
-                [&_.ProseMirror]:outline-none
-                [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-white/40
-              "
-            />
-
-            {bodyError && (
-              <p className="mt-1 text-sm text-red-400">{bodyError.message}</p>
-            )}
-          </div>
-        );
-      }}
-    />
-  );
-}
-
-/* =======================
-   ATTACHMENTS
-======================= */
-interface IAttachements {
-  control: Control<EmailFormData>;
-}
-
-function Attachments({ control }: IAttachements) {
-  return (
-    <Controller
-      name="attachments"
-      control={control}
-      render={({ field, fieldState }) => {
-        const files: File[] = field.value || [];
-        const error = fieldState.error;
-
-        function removeFile(index: number) {
-          const updatedFiles = files.filter((_, i) => i !== index);
-          field.onChange(updatedFiles);
-        }
-
-        return (
-          <div className="space-y-3">
-            {/* UPLOAD */}
-            <label
-              className="
-                inline-flex items-center gap-2
-                cursor-pointer
-                px-4 py-2 rounded-lg
-                bg-white/10 hover:bg-white/20
-                border border-white/20
-                backdrop-blur-md
-                transition
-                whitespace-nowrap
-              "
-            >
-              📎 Anexar
-              <input
-                type="file"
-                multiple
-                hidden
-                onChange={(e) =>
-                  field.onChange([
-                    ...files,
-                    ...Array.from(e.target.files || []),
-                  ])
-                }
-              />
-            </label>
-
-            {/* FILE LIST */}
-            {files.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {files.map((file, index) => (
-                  <div
-                    key={`${file.name}-${index}`}
-                    className="
-                      flex items-center gap-2
-                      px-3 py-1.5 rounded-lg
-                      bg-white/10
-                      border border-white/20
-                      backdrop-blur-md
-                      text-xs
-                    "
-                  >
-                    📄
-                    <span className="max-w-[160px] truncate">{file.name}</span>
-                    <button
-                      type="button"
-                      onClick={() => removeFile(index)}
-                      className="
-                        text-white/60
-                        hover:text-red-400
-                        transition
-                      "
-                      aria-label="Remover arquivo"
-                    >
-                      ✕
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {error && <p className="text-sm text-red-400">{error.message}</p>}
-          </div>
-        );
-      }}
-    />
   );
 }

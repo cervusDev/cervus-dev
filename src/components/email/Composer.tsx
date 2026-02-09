@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import {
   useForm,
 } from "react-hook-form";
@@ -30,6 +30,8 @@ export function EmailComposer() {
       attachments: [],
     },
   });
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const onSubmit = useCallback(async (values: EmailFormData) => {
     try {
@@ -63,6 +65,7 @@ export function EmailComposer() {
         attachments: values.attachments,
       });
       form.reset();
+      setIsOpen(false);
     } catch (err) {
       console.log('send email error', err)
     }
@@ -71,7 +74,7 @@ export function EmailComposer() {
   const subjectError = form.formState.errors.subject;
 
   return (
-    <Dialog.Root>
+    <Dialog.Root  open={isOpen} onOpenChange={setIsOpen}>
       {/* TRIGGER */}
       <Dialog.Trigger asChild>
         <button className="rounded-lg bg-orange-400 px-5 py-3 font-extrabold text-white transition-colors hover:bg-orange-500">

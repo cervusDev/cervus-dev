@@ -1,4 +1,4 @@
-import { createFormData } from "@/utils/formDataFromBody";
+import { createFormData } from "@/utils/createFormData";
 import HttpClient from "../core/HttpClient";
 import type { IMailRepository } from "./IMailRepository";
 import type { ISendMailServiceInputData } from "./dtos/send/InputData";

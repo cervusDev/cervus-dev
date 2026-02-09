@@ -34,9 +34,9 @@ export function EmailComposer() {
   const onSubmit = useCallback(async (values: EmailFormData) => {
     try {
       if (values.attachments) {
-        if (values.attachments.length > 3) {
+        if (values.attachments.length > 1) {
           form.setError("attachments", {
-            message: "Máximo de 3 anexos permitidos.",
+            message: "Máximo de 1 anexo permitido.",
           });
           return;
         }

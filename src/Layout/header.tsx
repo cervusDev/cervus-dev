@@ -24,18 +24,18 @@ function Header() {
           >
             Portifólio
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/aplicativos"
             className="hover:text-orange-500 transition-colors"
           >
             Aplicativos
-          </NavLink>
-          <div
+          </NavLink> */}
+          {/* <div
             onClick={() => setIsModalOpen(true)}
             className="hover:text-orange-500 transition-colors cursor-pointer"
           >
             Artigos
-          </div>
+          </div> */}
           <NavLink
             to="/contato"
             className="hover:text-orange-500 transition-colors"

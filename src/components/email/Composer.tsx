@@ -1,8 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useCallback, useState } from "react";
-import {
-  useForm,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import MailService from "@/services/mail/MailService";
@@ -15,7 +13,7 @@ const formSchema = z.object({
   text: z.string().min(10, "O corpo do email é obrigatório"),
   attachments: z
     .array(z.instanceof(File))
-    .max(5, "Máximo de 5 anexos")
+    .max(1, "Máximo de 1 anexo")
     .optional(),
 });
 
@@ -33,48 +31,51 @@ export function EmailComposer() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const onSubmit = useCallback(async (values: EmailFormData) => {
-    try {
-      if (values.attachments) {
-        if (values.attachments.length > 1) {
-          form.setError("attachments", {
-            message: "Máximo de 1 anexo permitido.",
-          });
-          return;
+  const onSubmit = useCallback(
+    async (values: EmailFormData) => {
+      try {
+        if (values.attachments) {
+          if (values.attachments.length > 1) {
+            form.setError("attachments", {
+              message: "Máximo de 1 anexo permitido.",
+            });
+            return;
+          }
+
+          for (const file of values.attachments) {
+            if (!allowedTypes.includes(file.type)) {
+              form.setError("attachments", {
+                message: `Tipo de arquivo não permitido: ${file.name}`,
+              });
+              return;
+            }
+            if (file.size > maxFileSize) {
+              form.setError("attachments", {
+                message: `Arquivo muito grande: ${file.name}`,
+              });
+              return;
+            }
+          }
         }
 
-        for (const file of values.attachments) {
-          if (!allowedTypes.includes(file.type)) {
-            form.setError("attachments", {
-              message: `Tipo de arquivo não permitido: ${file.name}`,
-            });
-            return;
-          }
-          if (file.size > maxFileSize) {
-            form.setError("attachments", {
-              message: `Arquivo muito grande: ${file.name}`,
-            });
-            return;
-          }
-        }
+        MailService.send({
+          text: values.text,
+          subject: values.subject,
+          attachments: values.attachments,
+        });
+        form.reset();
+        setIsOpen(false);
+      } catch (err) {
+        console.log("send email error", err);
       }
-
-      MailService.send({
-        text: values.text,
-        subject: values.subject,
-        attachments: values.attachments,
-      });
-      form.reset();
-      setIsOpen(false);
-    } catch (err) {
-      console.log('send email error', err)
-    }
-  }, [form]);
+    },
+    [form],
+  );
 
   const subjectError = form.formState.errors.subject;
 
   return (
-    <Dialog.Root  open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       {/* TRIGGER */}
       <Dialog.Trigger asChild>
         <button className="rounded-lg bg-orange-400 px-5 py-3 font-extrabold text-white transition-colors hover:bg-orange-500">
